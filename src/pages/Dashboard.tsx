@@ -125,9 +125,9 @@ export default function Dashboard() {
               <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                 <Coins className="h-8 w-8 text-primary" />
               </div>
-              <CardTitle>No Chit Funds Yet</CardTitle>
+              <CardTitle>No Chit Funds/Kuris Yet</CardTitle>
               <CardDescription className="max-w-md mx-auto">
-                Create your first digital chit fund to start managing savings groups 
+                Create your first digital chit fund/kuri to start managing savings groups 
                 with members from around the world.
               </CardDescription>
               <Button className="mt-6" onClick={() => setCreateDialogOpen(true)}>
