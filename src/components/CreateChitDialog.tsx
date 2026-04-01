@@ -114,7 +114,7 @@ export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDi
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'Failed to create chit fund. Please try again.',
+        description: 'Failed to create chit fund/kuri. Please try again.',
         variant: 'destructive',
       });
     } finally {
