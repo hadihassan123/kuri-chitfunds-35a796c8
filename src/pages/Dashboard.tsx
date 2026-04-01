@@ -66,7 +66,7 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.total}</div>
-              <p className="text-xs text-muted-foreground">Chit funds created</p>
+              <p className="text-xs text-muted-foreground">Chit funds/kuris created</p>
             </CardContent>
           </Card>
           <Card>
