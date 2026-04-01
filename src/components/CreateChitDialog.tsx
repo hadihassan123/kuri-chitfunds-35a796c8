@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Copy, Check, Link as LinkIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -72,6 +73,8 @@ interface CreateChitDialogProps {
 
 export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [createdLink, setCreatedLink] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -89,10 +92,35 @@ export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDi
     },
   });
 
+  const getShareableLink = (chitId: string) => {
+    return `${window.location.origin}/join/${chitId}`;
+  };
+
+  const handleCopyLink = async () => {
+    if (!createdLink) return;
+    try {
+      await navigator.clipboard.writeText(createdLink);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast({ title: 'Copy failed', description: 'Please copy the link manually.', variant: 'destructive' });
+    }
+  };
+
+  const handleClose = () => {
+    if (createdLink) {
+      setCreatedLink(null);
+      setCopied(false);
+      form.reset();
+      onSuccess();
+    }
+    onOpenChange(false);
+  };
+
   const onSubmit = async (values: FormValues) => {
     setIsSubmitting(true);
     try {
-      await api.createChit({
+      const newChit = await api.createChit({
         name: values.name,
         description: values.description,
         monthlyAmount: values.monthlyAmount,
@@ -104,13 +132,7 @@ export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDi
         organizerCountry: values.organizerCountry,
         organizerWinsFirst: values.organizerWinsFirst,
       });
-      toast({
-        title: 'Chit Fund/Kuri Created!',
-        description: `${values.name} has been created. Add members to get started.`,
-      });
-      form.reset();
-      onOpenChange(false);
-      onSuccess();
+      setCreatedLink(getShareableLink(newChit.id));
     } catch (error) {
       toast({
         title: 'Error',
@@ -122,8 +144,46 @@ export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDi
     }
   };
 
+  // Show success screen with shareable link
+  if (createdLink) {
+    return (
+      <Dialog open={open} onOpenChange={handleClose}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Check className="h-5 w-5 text-green-500" />
+              Chit Fund/Kuri Created!
+            </DialogTitle>
+            <DialogDescription>
+              Share this link with members so they can join your chit fund/kuri.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 py-4">
+            <div className="flex items-center gap-2">
+              <div className="flex-1 flex items-center gap-2 rounded-md border bg-muted/50 px-3 py-2">
+                <LinkIcon className="h-4 w-4 text-muted-foreground shrink-0" />
+                <span className="text-sm truncate select-all">{createdLink}</span>
+              </div>
+              <Button size="icon" variant="outline" onClick={handleCopyLink}>
+                {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+              </Button>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Members can use this link to view the chit details and join as participants.
+            </p>
+          </div>
+
+          <div className="flex justify-end">
+            <Button onClick={handleClose}>Done</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Create New Chit Fund/Kuri</DialogTitle>
@@ -328,7 +388,7 @@ export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDi
             </div>
 
             <div className="flex justify-end gap-3 pt-4">
-              <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+              <Button type="button" variant="outline" onClick={handleClose}>
                 Cancel
               </Button>
               <Button type="submit" disabled={isSubmitting}>

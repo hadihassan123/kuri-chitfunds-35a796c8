@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Plus, PlayCircle, Users, Calendar, Crown, Info } from 'lucide-react';
+import { ArrowLeft, Plus, PlayCircle, Users, Calendar, Crown, Info, Copy, Check, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -12,6 +12,7 @@ import { DrawHistory } from '@/components/DrawHistory';
 import { AddMemberDialog } from '@/components/AddMemberDialog';
 import { DrawDialog } from '@/components/DrawDialog';
 import { api } from '@/lib/api';
+import { toast } from '@/hooks/use-toast';
 import { ChitFund } from '@/types/chit';
 import { format } from 'date-fns';
 
@@ -138,10 +139,23 @@ export default function ChitDetails() {
 
           <div className="flex gap-3">
             {canAddMembers && (
-              <Button variant="outline" onClick={() => setAddMemberOpen(true)}>
-                <Plus className="mr-2 h-4 w-4" />
-                Add Member
-              </Button>
+              <>
+                <Button variant="outline" onClick={() => {
+                  const link = `${window.location.origin}/join/${chit.id}`;
+                  navigator.clipboard.writeText(link).then(() => {
+                    toast({ title: 'Invite link copied!', description: 'Share this link with members to join.' });
+                  }).catch(() => {
+                    toast({ title: 'Copy failed', variant: 'destructive' });
+                  });
+                }}>
+                  <Share2 className="mr-2 h-4 w-4" />
+                  Copy Invite Link
+                </Button>
+                <Button variant="outline" onClick={() => setAddMemberOpen(true)}>
+                  <Plus className="mr-2 h-4 w-4" />
+                  Add Member
+                </Button>
+              </>
             )}
             {canDraw && (
               <Button onClick={() => setDrawDialogOpen(true)}>
