@@ -105,7 +105,7 @@ export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDi
         organizerWinsFirst: values.organizerWinsFirst,
       });
       toast({
-        title: 'Chit Fund Created!',
+        title: 'Chit Fund/Kuri Created!',
         description: `${values.name} has been created. Add members to get started.`,
       });
       form.reset();
