@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Plus, PlayCircle, Users, Calendar, Crown, Info } from 'lucide-react';
+import { ArrowLeft, Plus, PlayCircle, Users, Calendar, Crown, Info, Copy, Check, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
