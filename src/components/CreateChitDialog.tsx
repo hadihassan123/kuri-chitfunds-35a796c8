@@ -105,7 +105,7 @@ export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDi
         organizerWinsFirst: values.organizerWinsFirst,
       });
       toast({
-        title: 'Chit Fund Created!',
+        title: 'Chit Fund/Kuri Created!',
         description: `${values.name} has been created. Add members to get started.`,
       });
       form.reset();
@@ -114,7 +114,7 @@ export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDi
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'Failed to create chit fund. Please try again.',
+        description: 'Failed to create chit fund/kuri. Please try again.',
         variant: 'destructive',
       });
     } finally {
@@ -126,9 +126,9 @@ export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDi
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Create New Chit Fund</DialogTitle>
+          <DialogTitle>Create New Chit Fund/Kuri</DialogTitle>
           <DialogDescription>
-            Set up a new chit fund group. You'll be registered as the organizer.
+            Set up a new chit fund/kuri group. You'll be registered as the organizer.
           </DialogDescription>
         </DialogHeader>
 
@@ -332,7 +332,7 @@ export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDi
                 Cancel
               </Button>
               <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Creating...' : 'Create Chit Fund'}
+                {isSubmitting ? 'Creating...' : 'Create Chit Fund/Kuri'}
               </Button>
             </div>
           </form>

@@ -45,9 +45,9 @@ export default function Dashboard() {
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold">Welcome to ChitFund</h1>
+              <h1 className="text-3xl font-bold">Welcome to ChitFund/Kuri</h1>
               <p className="text-muted-foreground mt-1">
-                Digitize your traditional chit funds for the modern world
+                Digitize your traditional chit funds & kuris for the modern world
               </p>
             </div>
             <Button onClick={() => setCreateDialogOpen(true)} size="lg">
@@ -66,7 +66,7 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.total}</div>
-              <p className="text-xs text-muted-foreground">Chit funds created</p>
+              <p className="text-xs text-muted-foreground">Chit funds/kuris created</p>
             </CardContent>
           </Card>
           <Card>
@@ -125,9 +125,9 @@ export default function Dashboard() {
               <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                 <Coins className="h-8 w-8 text-primary" />
               </div>
-              <CardTitle>No Chit Funds Yet</CardTitle>
+              <CardTitle>No Chit Funds/Kuris Yet</CardTitle>
               <CardDescription className="max-w-md mx-auto">
-                Create your first digital chit fund to start managing savings groups 
+                Create your first digital chit fund/kuri to start managing savings groups 
                 with members from around the world.
               </CardDescription>
               <Button className="mt-6" onClick={() => setCreateDialogOpen(true)}>
@@ -138,7 +138,7 @@ export default function Dashboard() {
           </Card>
         ) : (
           <div>
-            <h2 className="text-xl font-semibold mb-4">Your Chit Funds</h2>
+            <h2 className="text-xl font-semibold mb-4">Your Chit Funds/Kuris</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {chits.map((chit) => (
                 <ChitCard key={chit.id} chit={chit} />
