@@ -61,9 +61,9 @@ export default function ChitDetails() {
         <main className="container py-8">
           <Card className="max-w-md mx-auto text-center py-12">
             <CardHeader>
-              <CardTitle>Chit Not Found</CardTitle>
+              <CardTitle>Chit/Kuri Not Found</CardTitle>
               <CardDescription>
-                The chit fund you're looking for doesn't exist.
+                The chit fund/kuri you're looking for doesn't exist.
               </CardDescription>
             </CardHeader>
             <CardContent>

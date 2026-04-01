@@ -332,7 +332,7 @@ export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDi
                 Cancel
               </Button>
               <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Creating...' : 'Create Chit Fund'}
+                {isSubmitting ? 'Creating...' : 'Create Chit Fund/Kuri'}
               </Button>
             </div>
           </form>

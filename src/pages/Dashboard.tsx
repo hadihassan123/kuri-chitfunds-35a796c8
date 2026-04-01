@@ -138,7 +138,7 @@ export default function Dashboard() {
           </Card>
         ) : (
           <div>
-            <h2 className="text-xl font-semibold mb-4">Your Chit Funds</h2>
+            <h2 className="text-xl font-semibold mb-4">Your Chit Funds/Kuris</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {chits.map((chit) => (
                 <ChitCard key={chit.id} chit={chit} />

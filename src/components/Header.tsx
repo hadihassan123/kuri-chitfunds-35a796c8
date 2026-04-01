@@ -10,8 +10,8 @@ export function Header() {
             <Coins className="h-6 w-6" />
           </div>
           <div>
-            <h1 className="text-xl font-bold">ChitFund</h1>
-            <p className="text-xs text-muted-foreground -mt-1">Digital Chit Management</p>
+            <h1 className="text-xl font-bold">ChitFund/Kuri</h1>
+            <p className="text-xs text-muted-foreground -mt-1">Digital Chit & Kuri Management</p>
           </div>
         </Link>
       </div>

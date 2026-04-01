@@ -97,7 +97,7 @@ export function AddMemberDialog({ open, onOpenChange, chitId, onSuccess }: AddMe
         <DialogHeader>
           <DialogTitle>Add New Member</DialogTitle>
           <DialogDescription>
-            Add a new participant to this chit fund group.
+            Add a new participant to this chit fund/kuri group.
           </DialogDescription>
         </DialogHeader>
 
