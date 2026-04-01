@@ -126,9 +126,9 @@ export function CreateChitDialog({ open, onOpenChange, onSuccess }: CreateChitDi
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Create New Chit Fund</DialogTitle>
+          <DialogTitle>Create New Chit Fund/Kuri</DialogTitle>
           <DialogDescription>
-            Set up a new chit fund group. You'll be registered as the organizer.
+            Set up a new chit fund/kuri group. You'll be registered as the organizer.
           </DialogDescription>
         </DialogHeader>
 
