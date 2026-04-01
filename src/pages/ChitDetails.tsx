@@ -139,10 +139,23 @@ export default function ChitDetails() {
 
           <div className="flex gap-3">
             {canAddMembers && (
-              <Button variant="outline" onClick={() => setAddMemberOpen(true)}>
-                <Plus className="mr-2 h-4 w-4" />
-                Add Member
-              </Button>
+              <>
+                <Button variant="outline" onClick={() => {
+                  const link = `${window.location.origin}/join/${chit.id}`;
+                  navigator.clipboard.writeText(link).then(() => {
+                    toast({ title: 'Invite link copied!', description: 'Share this link with members to join.' });
+                  }).catch(() => {
+                    toast({ title: 'Copy failed', variant: 'destructive' });
+                  });
+                }}>
+                  <Share2 className="mr-2 h-4 w-4" />
+                  Copy Invite Link
+                </Button>
+                <Button variant="outline" onClick={() => setAddMemberOpen(true)}>
+                  <Plus className="mr-2 h-4 w-4" />
+                  Add Member
+                </Button>
+              </>
             )}
             {canDraw && (
               <Button onClick={() => setDrawDialogOpen(true)}>
